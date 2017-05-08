@@ -8,30 +8,23 @@ var requestOptions = {
 
 
 function getAndPrintHTML(options, callback){
-
-
   let outputData = ""
 
   https.get(options, (response) => {
     //error handling?
-
     response.setEncoding("utf8");
-
     response.on("data", (chunk) => {
       console.log("Chunk recieved");
       outputData += chunk
     })
-
     response.on('end', () => {
-      console.log("The 'end' of the data has been reached.");
-      console.log(outputData)
+      callback(outputData)
     })
-
-
-
   })
 
 }
+
+
 
 function printHTML(html){
   console.log(html)
@@ -39,4 +32,4 @@ function printHTML(html){
 
 
 
-getAndPrintHTML(requestOptions)
+getAndPrintHTML(requestOptions, printHTML);
