@@ -1,5 +1,3 @@
-var https = require("https");
-
 
 var requestOptions = {
     host: 'sytantris.github.io',
@@ -8,6 +6,7 @@ var requestOptions = {
 
 
 function getHTML(options, callback){
+  var https = require("https");
   let outputData = ""
 
   https.get(options, (response) => {
@@ -25,11 +24,13 @@ function getHTML(options, callback){
 }
 
 
-
 function printHTML(html){
   console.log(html)
 }
 
 
+//getHTML(requestOptions, printHTML);
 
-getHTML(requestOptions, printHTML);
+module.exports = {
+  getHTML : getHTML
+}
